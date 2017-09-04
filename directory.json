@@ -37,6 +37,17 @@
           "STREET": "91 Montclair Avenue",
           "REGION": "New Jersey",
           "LOCALITY": "Montclair"
+        },
+        {
+          "place": "Away",
+          "address": "London, England",
+          "notes": "groovy",
+          "LAT": 51.5073509,
+          "LNG": -0.1277583,
+          "COUNTRY": "United Kingdom",
+          "STREET": null,
+          "REGION": "England",
+          "LOCALITY": "London"
         }
       ]
     }
