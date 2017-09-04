@@ -59,6 +59,17 @@
           "STREET": null,
           "REGION": "Beijing",
           "LOCALITY": "Beijing"
+        },
+        {
+          "place": "Fair city",
+          "address": "Dublin Ireland",
+          "notes": "green",
+          "LAT": 53.3498053,
+          "LNG": -6.2603097,
+          "COUNTRY": "Ireland",
+          "STREET": null,
+          "REGION": "County Dublin",
+          "LOCALITY": "Dublin"
         }
       ]
     }
