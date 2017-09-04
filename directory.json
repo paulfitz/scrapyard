@@ -48,6 +48,17 @@
           "STREET": null,
           "REGION": "England",
           "LOCALITY": "London"
+        },
+        {
+          "place": "China",
+          "address": "Beijing, China",
+          "notes": "China",
+          "LAT": 39.90419989999999,
+          "LNG": 116.4073963,
+          "COUNTRY": "China",
+          "STREET": null,
+          "REGION": "Beijing",
+          "LOCALITY": "Beijing"
         }
       ]
     }
