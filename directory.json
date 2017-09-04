@@ -29,12 +29,12 @@
         },
         {
           "place": "Furniture",
-          "address": "93  Montclair Ave, Montclair, NJ",
+          "address": "91 Montclair Ave, Montclair, NJ",
           "notes": "altiness",
-          "LAT": 40.8222505,
-          "LNG": -74.2047548,
+          "LAT": 40.8220836,
+          "LNG": -74.2048381,
           "COUNTRY": "United States",
-          "STREET": "93 Montclair Avenue",
+          "STREET": "91 Montclair Avenue",
           "REGION": "New Jersey",
           "LOCALITY": "Montclair"
         }
