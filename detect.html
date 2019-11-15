@@ -6,15 +6,27 @@
   <body>
 
     <p>
-      v2
+      v3
     </p>
-    
-    <span id=x>hello!</span>
+
+    <p>
+      <span id=x>hello!</span>
+    </p>
+    <p>
+      <span id=v>hello!</span>
+    </p>
 
     <script>
       document.getElementById('x').innerHTML = 'yo';
       var browser = window.bowser.getParser(window.navigator.userAgent);
       document.getElementById('x').innerHTML = JSON.stringify(browser);
+      var isValidBrowser = browser.satisfies({
+        desktop: {
+          chrome: ">72.0.3626",   // first 2019 version
+          firefox: ">65"          // first 2019 version
+        }
+      });
+      document.getElementById('v').innerHTML = JSON.stringify(isValidBrowser);
     </script>
 
     
