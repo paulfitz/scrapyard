@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="coi-serviceworker.min.js"></script>
+  </head>
+  <body>
+    Pyodide test page <br>
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+      const worker = new Worker('practice.js');
+      let readingCb;
+      let reading;
+      function prepRead() {
+        reading = new Promise((resolve) => {
+          readingCb = resolve;
+        });
+      }
+      prepRead();
+
+      let pingingCb;
+      let pinging;
+      function prepPing() {
+        pinging = new Promise((resolve) => {
+          pingingCb = resolve;
+        });
+      }
+      prepPing();
+
+      async function doStuff(key, len, storage) {
+        while (true) {
+          await writeData(key, len, storage, [42, 4, 2]);
+          const result = await readData(key, storage);
+          console.log("READ", {result});
+        }
+      }
+      async function readData() {
+        const rr = await reading;
+        console.log("read", {rr});
+        return rr;
+      }
+      /*
+      async function readData(key, storage) {
+        console.log("waiting to read...");
+        await Atomics.waitAsync(key, 0, 0);
+        console.log("got data...");
+        Atomics.store(key, 0, 0);
+        Atomics.notify(key, 0, 0);
+      }
+      */
+      async function writeData(key, len, storage, data) {
+        console.log("waiting to write...");
+        try {
+          await Atomics.waitAsync(key, 0, 1);  // wait until not 1
+        } catch (e) {
+          console.log("Atomics problem", {e});
+          if (Atomics.load(key, 0) === 1) {
+            await ping;
+          }
+        }
+        console.log("ready to write...");
+        storage.set(data);
+        Atomics.store(len, 0, data.length);  // doesn't need to be atomic - just lazy
+        Atomics.store(key, 0, 1);
+        Atomics.notify(key, 0, 1);
+      }
+      async function main2() {
+        const buffer = new SharedArrayBuffer(1024);
+        const key = new Int32Array(buffer, 0, 4);
+        const len = new Int32Array(buffer, 4, 4);
+        const data = new Uint8Array(buffer, 8);
+        key[0] = 0;
+        len[0] = 99;
+        doStuff(key, len, data).catch(e => console.error(e));
+        worker.onmessage = (e) => {
+          console.log('Message received from worker', e.data);
+          if (e.data === 'ping') {
+            console.log("IT IS A PING");
+            pingingCb(e.data);
+            prepPing();
+          } else {
+            readingCb(e.data);
+            prepRead();
+          }
+        }
+        setTimeout(() => {
+          const result = worker.postMessage({
+            comment: 'hello',
+            buffer,
+          });
+          console.log('psoted message', {result});
+        }, 1000);
+      }
+      main2().catch(e => console.error(e));
+    </script>
+  </body>
+</html>
+
