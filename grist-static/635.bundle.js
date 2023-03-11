@@ -1,0 +1,2 @@
+(self.webpackChunkgrist_core=self.webpackChunkgrist_core||[]).push([[635],{8635:(e,t,n)=>{Object.assign(window.exposedModules,{dom:n(81294),grainjs:n(18099),ko:n(29301),moment:n(68652),Comm:n(96502),_loadScript:n(92737),ConnectState:n(54905)})},92737:(e,t,n)=>{const o=n(74392),c=n(11527).get("document");e.exports=function(e){return new o(((t,n)=>{let o=c.document.createElement("script");o.type="text/javascript",o.onload=t,o.onerror=n,o.src=e,c.document.getElementsByTagName("head")[0].appendChild(o)}))}}}]);
+//# sourceMappingURL=635.bundle.js.map
