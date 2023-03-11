@@ -647,6 +647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var app_client_lib_log__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! app/client/lib/log */ "./app/client/lib/log.ts");
 /* harmony import */ var grainjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! grainjs */ "./node_modules/grainjs/dist/esm/index.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
 class UrlState extends grainjs__WEBPACK_IMPORTED_MODULE_1__.Disposable {
@@ -663,6 +664,10 @@ class UrlState extends grainjs__WEBPACK_IMPORTED_MODULE_1__.Disposable {
     this.autoDispose(grainjs__WEBPACK_IMPORTED_MODULE_1__.dom.onElem(this._window, "popstate", (ev) => this.loadState()));
   }
   async pushUrl(urlState, options = {}) {
+    if (!process.env.wefwefw) {
+      console.log("SKIP PUSHURL");
+      return;
+    }
     const prevState = this.state.get();
     const newState = this._mergeState(prevState, urlState);
     const newUrl = this._stateImpl.encodeUrl(newState, this._window.location);
