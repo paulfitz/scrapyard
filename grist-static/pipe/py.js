@@ -162,9 +162,8 @@ class InsideWorkerWithBlockingStream {
   }
 
   _getWorkerApi() {
-    if (typeof Worker === 'undefined') {
+    if (typeof addEventListener === 'undefined') {
       const wt = require('worker_threads');
-      this.Worker = wt.Worker;
       this.postMessage = (data) => {
         wt.parentPort.postMessage(data);
       };
@@ -173,7 +172,6 @@ class InsideWorkerWithBlockingStream {
         wt.parentPort.start();
       }
     } else {
-      this.Worker = Worker;
       this.addEventListener = (typ, cb) => addEventListener(typ, cb);
       this.postMessage = (data) => postMessage(data);
     }

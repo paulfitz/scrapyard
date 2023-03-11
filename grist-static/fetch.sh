@@ -24,4 +24,4 @@ mkdir -p static/sql.js
 cp -r ~/cvs/grist-static/node_modules/sql.js/dist node_modules/sql.js/dist
 cp -r ~/cvs/grist-static/node_modules/sql.js/dist static/sql.js/dist
 
-cp -r ~/cvs/grist-static/core/pipe pipe
+cp -r ~/cvs/grist-static/core/static/pure/pipe pipe
