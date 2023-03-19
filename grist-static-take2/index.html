@@ -5,7 +5,7 @@
 
 <script src="coi-serviceworker.min.js"></script>
 
-<base href="https://grist-static.com/experiments/e0004/" />
+<base href="https://grist-static.com/experiments/e0005/" />
 
 <link rel="icon" type="image/x-icon" href="icons/favicon.png" crossorigin="anonymous" />
 
@@ -18,7 +18,8 @@
 <link rel="preload" href="locales/en.client.json" as="fetch" type="application/json" crossorigin>
 <link rel="preload" href="locales/en.server.json" as="fetch" type="application/json" crossorigin>
 <script>
-  const homeUrl = window.location.href.replace('index.html', '');
+  const homeUrl = window.location.href.split('?')[0].replace('index.html', '');
+  window.seedFile = homeUrl + 'investment-research.grist';
   const fakeDocId = "new~2d6rcxHotohxAuTxttFRzU";
   const fakeUrl = "https://example.com/o/docs/doc/new~2d6rcxHotohxAuTxttFRzU";
   window.fakeUrl = fakeUrl;
