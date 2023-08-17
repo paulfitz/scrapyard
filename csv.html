@@ -1,20 +1,8 @@
 <html>
-
+  <script src="https://grist-static.com/csv-viewer.js"></script>
   <style>
-    body {
+    .grist-drop-area-surround {
       font-family: sans-serif;
-    }
-    a {
-      color: #369;
-    }
-    .note {
-      width: 500px;
-      margin: 50px auto;
-      font-size: 1.1em;
-      color: #333;
-      text-align: justify;
-    }
-    #drop-area-surround {
       border-radius: 24px;
       padding: 20px;
       width: 480px;
@@ -22,18 +10,15 @@
       padding: 8px;
       background-color: #27d843;
     }
-    #drop-area {
+    .grist-drop-area {
       border: 2px dashed #fff;
       border-radius: 16px;
       padding: 20px;
     }
-    #drop-area.highlight {
+    .grist-drop-area.highlight {
       border: 2px solid yellow;
     }
-    p {
-      margin-top: 0;
-    }
-    .my-form {
+    .grist-drop-form {
       color: white;
       text-align: center;
       margin: 0;
@@ -43,17 +28,17 @@
       align-items: center;
       width: 100%;
     }
-    #gallery {
+    .grist-drop-gallery {
       margin-top: 10px;
       display: none;
     }
-    #gallery img {
+    .grist-drop-gallery img {
       width: 150px;
       margin-bottom: 10px;
       margin-right: 10px;
       vertical-align: middle;
     }
-    .button {
+    .grist-drop-form .button {
       display: inline-block;
       padding: 10px;
       color: black;
@@ -62,19 +47,19 @@
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-    .button:hover {
+    .grist-drop-form .button:hover {
       background: #ddd;
     }
-    #fileElem {
+    .grist-drop-form input[type=file] {
       display: none;
     }
   </style>
   
   <body>
 
-<div id="drop-area-surround">
-<div id="drop-area">
-  <form class="my-form">
+<div class="grist-drop-area-surround">
+<div id="drop-area" class="grist-drop-area">
+  <form class="grist-drop-form">
     <div>
       Drag & Drop to<br />
       Upload File
@@ -85,11 +70,11 @@
     </div>
 
     <div>
-    <input type="file" id="fileElem" accept=".csv">
-    <label class="button" for="fileElem">Browse File</label>
+    <input type="file" id="grist-drop-file" accept=".csv">
+    <label class="button" for="grist-drop-file">Browse File</label>
     </div>
   </form>
-  <div id="gallery" /></div>
+  <div id="drop-gallery" class="grist-drop-gallery" /></div>
 </div>
 </div>
 
@@ -136,10 +121,14 @@ function setupLoader(element, callback) {
 }
 function processAddition(addition) {
   const {txt, name} = addition;
-  let blk = document.createElement('p');
-  blk.innerText = name + "\n" + txt;
-  document.getElementById('gallery').appendChild(blk);
-  document.getElementById('gallery').style.display = 'block';
+  // let blk = document.createElement('p');
+  // blk.innerText = name + "\n" + txt;
+  // document.getElementById('drop-gallery').appendChild(blk);
+  // document.getElementById('drop-gallery').style.display = 'block';
+  previewInGrist({
+    initialContent: txt,
+    singlePage: true,
+  });
 }
 setupLoader('drop-area', processAddition);
 </script>
